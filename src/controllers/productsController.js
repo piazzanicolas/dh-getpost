@@ -14,12 +14,12 @@ const controller = {
 
 	// Detail - Detail from one product
 	detail: (req, res) => {
-		res.render('detail');
+		res.render('detail', {productos: products, toThousand, productID: req.params.productId});
 	},
 
 	// Create - Form to create
 	create: (req, res) => {
-		// Do the magic
+		res.render('product-create-form', {productos: products});
 	},
 	
 	// Create -  Method to store
@@ -29,11 +29,20 @@ const controller = {
 
 	// Update - Form to edit
 	edit: (req, res) => {
-		// Do the magic
+		res.render('product-edit-form', {productos: products, productID: req.params.productId});
 	},
 	// Update - Method to update
 	update: (req, res) => {
-		// Do the magic
+		let productAct = {
+			id: req.params.productId,
+			name: req.body.name,
+			price: req.body.price,
+			discount: req.body.discount,
+			category: req.body.category,
+			description: req.body.description
+		}
+
+		res.render('detail', {productos: products, toThousand, productID: req.params.productId});
 	},
 
 	// Delete - Delete one product from DB

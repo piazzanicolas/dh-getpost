@@ -6,36 +6,34 @@
 	<!-- Header -->
 	<%- include('partials/headerNavbar') %>
 	<!-- /Header -->
-
+	<%= productID = productID-1 %>
 	<!-- product detail -->
 	<div class="container products-wrapper">
 		<div class="row">
 			<div class="col-12">
-				<h2 class="products-title">Detalle del producto: NOMBRE DEL PRODUCTO</h2>
+				<h2 class="products-title">Detalle del producto: <%= productos[productID].name %></h2>
 			</div>
 		</div>
 		<div class="product-detail">
 			<div class="row">
 				<div class="col-12 col-lg-8">
-					<img src="/images/products/¿?" alt="product image" class="product-detail-img">
+					<img src="/images/products/<%= productos[productID].image %>" alt="product image" class="product-detail-img">
 					<p class="product-detail-description">
-						PRODUCT DESCRIPTION
+						<%= productos[productID].description %>
 					</p>
 				</div>
 				<div class="col-12 col-lg-4">
 					<article class="product-detail-info">
-						<h2 class="product-detail-title">PRODUCT NAME</h2>
+						<h2 class="product-detail-title"><%= productos[productID].name %></h2>
 						
 							<p class="product-detail-price small">
-								<span>$PRICE</span>
+								<span>$<%= productos[productID].price %></span>
 								/
-								<b>DISCOUNT% OFF</b>
+								<b><%= productos[productID].discount %>% OFF</b>
 							</p>
 							<p class="product-detail-price">
-								$FINAL PRICE
-							</p>
-							<p class="product-detail-price">
-								$PRICE
+								$<% let resultado = productos[productID].price - (productos[productID].price*productos[productID].discount/100).toFixed(0) %> 
+								<%= toThousand(resultado) %>
 							</p>
 
 						<ul class="actions-list">
@@ -52,8 +50,8 @@
 						<a href="#" class="buy-now-button">COMPRAR AHORA</a>
 						<hr>
 
-						<a href="/products/edit/¿?" class="action-button edit">EDITAR PRODUCTO</a>
-						<form action="/products/delete/¿¿" method="POST" style="display: inline-flex">
+						<a href="/products/edit/<%= productos[productID].id %>" class="action-button edit">EDITAR PRODUCTO</a>
+						<form action="/products/delete/<%= productos[productID].id %>" method="POST" style="display: inline-flex">
 							<button type="submit" class="action-button delete">ELIMINAR</button>
 						</form>
 					</article>
